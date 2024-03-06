@@ -5,6 +5,7 @@ go 1.21.0
 require (
 	github.com/cloudfoundry/bosh-cpi-go v0.0.0-20240224100157-0922490cd354
 	github.com/cloudfoundry/bosh-utils v0.0.446
+	github.com/gophercloud/gophercloud v1.10.0
 )
 
 require (

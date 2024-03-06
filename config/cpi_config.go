@@ -21,6 +21,9 @@ type OpenstackConfig struct {
 	HumanReadableVMNames         string   `json:"human_readable_vm_names"`
 	UseNovaNetworking            string   `json:"use_nova_networking"`
 	ConnectionOptions            string   `json:"connection_options"`
+	DomainName                   string   `json:"domain"`
+	ProjectName                  string   `json:"project"`
+	Tenant                       string   `json:"tenant"`
 	VM                           struct {
 		Stemcell struct {
 			APIVersion int `json:"api_version"`

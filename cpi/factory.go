@@ -58,19 +58,13 @@ func (cpiFactory Factory) New(ctx apiv1.CallContext) (apiv1.CPI, error) {
 		return CPI{}, err
 	}
 
-	//opts := gophercloud.AuthOptions{
-	//	IdentityEndpoint: "https://openstack.example.com:5000/v2.0",
-	//	Username:         "{username}",
-	//	Password:         "{password}",
-	//}
-
 	return CPI{
 		methods.NewInfoMethod(),
 
 		methods.NewCreateStemcellMethod(),
 		methods.NewDeleteStemcellMethod(),
 
-		methods.NewCreateVMMethod(),
+		methods.NewCreateVMMethod(cpiFactory.logger),
 		methods.NewDeleteVMMethod(),
 		methods.NewCalculateVMCloudPropertiesMethod(),
 		methods.NewHasVMMethod(),
