@@ -11,10 +11,10 @@ import (
 )
 
 type Factory struct {
-	fs        boshsys.FileSystem
-	uuidGen   boshuuid.Generator
-	cpiConfig config.CpiConfig
-	logger    boshlog.Logger
+	fs              boshsys.FileSystem
+	uuidGen         boshuuid.Generator
+	openstackConfig config.OpenstackConfig
+	logger          boshlog.Logger
 }
 
 type CPI struct {
@@ -46,10 +46,10 @@ type CPI struct {
 func NewFactory(
 	fs boshsys.FileSystem,
 	uuidGen boshuuid.Generator,
-	cpiConfig config.CpiConfig,
+	openstackConfig config.OpenstackConfig,
 	logger boshlog.Logger,
 ) Factory {
-	return Factory{fs, uuidGen, cpiConfig, logger}
+	return Factory{fs, uuidGen, openstackConfig, logger}
 }
 
 func (cpiFactory Factory) New(ctx apiv1.CallContext) (apiv1.CPI, error) {
@@ -64,7 +64,7 @@ func (cpiFactory Factory) New(ctx apiv1.CallContext) (apiv1.CPI, error) {
 		methods.NewCreateStemcellMethod(),
 		methods.NewDeleteStemcellMethod(),
 
-		methods.NewCreateVMMethod(cpiFactory.logger),
+		methods.NewCreateVMMethod(cpiFactory.openstackConfig, cpiFactory.logger),
 		methods.NewDeleteVMMethod(),
 		methods.NewCalculateVMCloudPropertiesMethod(),
 		methods.NewHasVMMethod(),

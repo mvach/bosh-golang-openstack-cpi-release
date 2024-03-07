@@ -27,7 +27,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	cpiFactory := cpi.NewFactory(fs, uuidGen, config.Config, logger)
+	cpiFactory := cpi.NewFactory(fs, uuidGen, config.Cloud.Properties.Openstack, logger)
 
 	cli := rpc.NewFactory(logger).NewCLI(cpiFactory)
 

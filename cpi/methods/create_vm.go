@@ -2,6 +2,7 @@ package methods
 
 import (
 	"github.com/cloudfoundry/bosh-cpi-go/apiv1"
+	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/config"
 	boshlog "github.com/cloudfoundry/bosh-utils/logger"
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack"
@@ -9,11 +10,12 @@ import (
 )
 
 type CreateVMMethod struct {
+	config config.OpenstackConfig
 	logger boshlog.Logger
 }
 
-func NewCreateVMMethod(logger boshlog.Logger) CreateVMMethod {
-	return CreateVMMethod{logger}
+func NewCreateVMMethod(openstackConfig config.OpenstackConfig, logger boshlog.Logger) CreateVMMethod {
+	return CreateVMMethod{openstackConfig, logger}
 }
 
 func (method CreateVMMethod) CreateVM(
@@ -28,11 +30,11 @@ func (method CreateVMMethod) CreateVMV2(
 	networks apiv1.Networks, diskCIDs []apiv1.DiskCID, env apiv1.VMEnv) (apiv1.VMCID, apiv1.Networks, error) {
 
 	opts := gophercloud.AuthOptions{
-		IdentityEndpoint: "https://identity.../v3",
-		Username:         "the_user",
-		Password:         "the_password",
-		DomainName:       "the_domain",
-		TenantName:       "the_project",
+		IdentityEndpoint: method.config.AuthURL,
+		Username:         method.config.Username,
+		Password:         method.config.APIKey,
+		DomainName:       method.config.DomainName,
+		TenantName:       method.config.Tenant,
 	}
 
 	provider, err := openstack.AuthenticatedClient(opts)
@@ -41,7 +43,7 @@ func (method CreateVMMethod) CreateVMV2(
 	}
 
 	client, err := openstack.NewComputeV2(provider, gophercloud.EndpointOpts{
-		Region: "the_region",
+		Region: method.config.Region,
 	})
 	if err != nil {
 		return apiv1.VMCID{}, apiv1.Networks{}, err
