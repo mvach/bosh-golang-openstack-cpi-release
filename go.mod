@@ -2,9 +2,12 @@ module github.com/cloudfoundry/bosh-golang-openstack-cpi-go
 
 go 1.21.0
 
+//replace github.com/cloudfoundry/bosh-cpi-go => /Users/D044133/sap/cloudfoundry/bosh-cpi-go
+
 require (
 	github.com/cloudfoundry/bosh-cpi-go v0.0.0-20240224100157-0922490cd354
 	github.com/cloudfoundry/bosh-utils v0.0.446
+	github.com/google/uuid v1.6.0
 	github.com/gophercloud/gophercloud v1.10.0
 )
 

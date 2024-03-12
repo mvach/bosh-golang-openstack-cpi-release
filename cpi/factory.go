@@ -4,7 +4,6 @@ import (
 	"github.com/cloudfoundry/bosh-cpi-go/apiv1"
 	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/config"
 	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/cpi/methods"
-	bosherr "github.com/cloudfoundry/bosh-utils/errors"
 	boshlog "github.com/cloudfoundry/bosh-utils/logger"
 	boshsys "github.com/cloudfoundry/bosh-utils/system"
 	boshuuid "github.com/cloudfoundry/bosh-utils/uuid"
@@ -53,7 +52,8 @@ func NewFactory(
 }
 
 func (cpiFactory Factory) New(ctx apiv1.CallContext) (apiv1.CPI, error) {
-	_, err := cpiFactory.getValidatedConfig(ctx)
+	openstackConfig := cpiFactory.openstackConfig
+	err := openstackConfig.Validate()
 	if err != nil {
 		return CPI{}, err
 	}
@@ -64,7 +64,7 @@ func (cpiFactory Factory) New(ctx apiv1.CallContext) (apiv1.CPI, error) {
 		methods.NewCreateStemcellMethod(),
 		methods.NewDeleteStemcellMethod(),
 
-		methods.NewCreateVMMethod(cpiFactory.openstackConfig, cpiFactory.logger),
+		methods.NewCreateVMMethod(openstackConfig, cpiFactory.logger),
 		methods.NewDeleteVMMethod(),
 		methods.NewCalculateVMCloudPropertiesMethod(),
 		methods.NewHasVMMethod(),
@@ -82,20 +82,4 @@ func (cpiFactory Factory) New(ctx apiv1.CallContext) (apiv1.CPI, error) {
 		methods.NewDeleteSnapshotMethod(),
 		methods.NewSnapshotDiskMethod(),
 	}, nil
-}
-
-func (cpiFactory Factory) getValidatedConfig(ctx apiv1.CallContext) (config.OpenstackConfig, error) {
-	var validateConfig config.OpenstackConfig
-
-	err := ctx.As(&validateConfig)
-	if err != nil {
-		return config.OpenstackConfig{}, bosherr.WrapError(err, "Parsing CPI context")
-	}
-
-	err = validateConfig.Validate()
-	if err != nil {
-		return config.OpenstackConfig{}, bosherr.WrapError(err, "Validating CPI context")
-	}
-
-	return validateConfig, nil
 }
