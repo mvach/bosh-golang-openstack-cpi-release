@@ -1,4 +1,4 @@
-module github.com/cloudfoundry/bosh-golang-openstack-cpi-go
+module github.com/cloudfoundry/bosh-golang-openstack-cpi-go/src/bosh-golang-openstack-cpi
 
 go 1.21.0
 

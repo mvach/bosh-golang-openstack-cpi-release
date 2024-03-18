@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"github.com/cloudfoundry/bosh-cpi-go/rpc"
-	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/config"
-	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/cpi"
+	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/src/bosh-golang-openstack-cpi/config"
+	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/src/bosh-golang-openstack-cpi/cpi"
 	boshlog "github.com/cloudfoundry/bosh-utils/logger"
 	boshsys "github.com/cloudfoundry/bosh-utils/system"
 	boshuuid "github.com/cloudfoundry/bosh-utils/uuid"

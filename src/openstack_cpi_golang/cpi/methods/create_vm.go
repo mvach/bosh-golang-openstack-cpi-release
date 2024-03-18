@@ -2,7 +2,7 @@ package methods
 
 import (
 	"github.com/cloudfoundry/bosh-cpi-go/apiv1"
-	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/config"
+	"github.com/cloudfoundry/bosh-golang-openstack-cpi-go/src/bosh-golang-openstack-cpi/config"
 	boshlog "github.com/cloudfoundry/bosh-utils/logger"
 	"github.com/google/uuid"
 	"github.com/gophercloud/gophercloud"
