@@ -1,3 +1,5 @@
-/local/
-/bosh-golang-openstack-cpi-go
-/bin/cpi
+local/
+bin/cpi
+.dev_builds/
+dev_releases/
+*.iml
