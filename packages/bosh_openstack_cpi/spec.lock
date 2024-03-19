@@ -1,0 +1,4 @@
+name: bosh_openstack_cpi
+fingerprint: 73e63f5b0e6e1747f58d127f7207477413fc8110f30376c4617b5a183b126dce
+dependencies:
+- openstack-ruby-3.1
