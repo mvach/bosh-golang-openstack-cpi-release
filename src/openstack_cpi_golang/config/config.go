@@ -24,16 +24,18 @@ type OpenstackConfig struct {
 	DefaultSecurityGroups        []string `json:"default_security_groups"`
 	DefaultVolumeType            string   `json:"default_volume_type"`
 	WaitResourcePollInterval     int      `json:"wait_resource_poll_interval"`
-	BootFromVolume               string   `json:"boot_from_volume"`
+	BootFromVolume               bool     `json:"boot_from_volume"`
 	ConfigDrive                  string   `json:"config_drive"`
-	UseDhcp                      string   `json:"use_dhcp"`
+	UseDhcp                      bool     `json:"use_dhcp"`
 	IgnoreServerAvailabilityZone bool     `json:"ignore_server_availability_zone"`
-	HumanReadableVMNames         string   `json:"human_readable_vm_names"`
-	UseNovaNetworking            string   `json:"use_nova_networking"`
+	HumanReadableVMNames         bool     `json:"human_readable_vm_names"`
+	UseNovaNetworking            bool     `json:"use_nova_networking"`
 	ConnectionOptions            string   `json:"connection_options"`
 	DomainName                   string   `json:"domain"`
 	ProjectName                  string   `json:"project"`
 	Tenant                       string   `json:"tenant"`
+	StateTimeOut                 int      `json:"state_timeout"`
+	StemcellPublicVisibility     bool     `json:"stemcell_public_visibility"`
 	VM                           struct {
 		Stemcell struct {
 			APIVersion int `json:"api_version"`
