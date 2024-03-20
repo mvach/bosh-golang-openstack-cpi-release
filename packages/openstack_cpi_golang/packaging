@@ -14,7 +14,7 @@ mkdir ../src && cp -a * ../src/ && mv ../src ./src
 
 mkdir -p $BOSH_INSTALL_TARGET/bin
 
-pushd src/bosh-golang-openstack-cpi
+pushd ./src/openstack_cpi_golang
   export GOARCH=amd64
   export GOOS=darwin
   export GOTOOLDIR=$GOROOT/pkg/darwin_amd64

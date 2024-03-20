@@ -3,7 +3,6 @@ name: openstack_cpi_golang
 
 dependencies:
 - golang-1-linux
-- golang-1-darwin
 
 files:
 - "openstack_cpi_golang/**/*.go"

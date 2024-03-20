@@ -1,5 +1,5 @@
 ---
-final_name: bosh-docker-cpi
+final_name: bosh-openstack-cpi-golang
 blobstore:
   provider: local
   options:
