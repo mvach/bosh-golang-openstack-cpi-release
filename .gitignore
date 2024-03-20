@@ -3,3 +3,5 @@ bin/cpi
 .dev_builds/
 dev_releases/
 *.iml
+.DS_Store
+.idea/

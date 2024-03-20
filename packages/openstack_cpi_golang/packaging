@@ -23,5 +23,5 @@ pushd ./src/openstack_cpi_golang
   export GOARCH=amd64
   export GOOS=linux
   export GOTOOLDIR=$GOROOT/pkg/linux_amd64
-  go build -o $BOSH_INSTALL_TARGET/bin/cpi
+  go build -o $BOSH_INSTALL_TARGET/bin/cpi-linux
 popd
